@@ -5,18 +5,29 @@ angular.module('find-github')
 	var returnResponseData = function (response) {
 		return response.data;
 	};
-	var handleResponseError = function (logMessage) {
-		return function (errResponse) {
-			ngNotify.set('Usuário não existe ', 'warn');
-			//console.error(logMessage);
-			//return $q.reject(errResponse);
-
-		};
-	};
 	return {
 		verify: function (user) {
 			return $http.get('https://api.github.com/users/'+ user)
-			.then(returnResponseData, handleResponseError('Usuário não encontrado!'));
+			.then(returnResponseData,    
+				function errorCallback( response  ) {
+					if ( response.status === 404 ) {
+						var field1 = document.getElementsByClassName('fighter_name')[0];
+						var field_name1 = document.getElementsByClassName('fighter_name')[0].value;
+						var field2 = document.getElementsByClassName('fighter_name')[1];
+						var field_name2 = document.getElementsByClassName('fighter_name')[1].value;
+						if ( field_name1 === user ) {
+							ngNotify.set('Lutador do 1º campo não existe ou inválido! ', 'error');
+							field1.value = '';
+						}
+						else {
+							ngNotify.set('Lutador do 2º campo não existe ou inválido! ', 'error');
+							field2.value = '';
+						}
+					}
+					else {
+						returnResponseData
+					}
+				});
 		}
 	};
 });
