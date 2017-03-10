@@ -7,7 +7,7 @@
 					<div class="form-fight">
 						<form>
 							<div class="input-group">
-								<input type="text" class="form-control fighter_name" name="" placeholder="Nome do usuário no github" data-ng-model="Arena.nome_fighter">
+								<input type="text" class="form-control fighter_name" placeholder="Nome do usuário no github" data-ng-model="Arena.nome_fighter" data-ng-keyup="Arena.check()">
 								<span class="input-group-btn">
 									<button class="btn btn-default" type="submit" data-ng-click="Arena.add(Arena.nome_fighter)">Encontrar!</button>
 								</span>
@@ -44,6 +44,28 @@
 										<p>Repositórios Públicos</p>
 										<p class="points">{{Arena.info.public_repos}}</p>
 									</li>
+									<li>
+										<p>Seguidores</p>
+										<p class="points">{{Arena.info.followers}}</p>
+									</li>
+									<li>
+										<p>Estrelas</p>
+										<p class="points">{{Arena.total_stars}}</p>
+									</li>
+								</ul>
+								<ul class="list-group">
+									<h4>Lista de Repositórios</h4>
+									<div data-ng-repeat="repositorie in Arena.repositories track by $index">
+										<li class="list-group-item">
+											<div class="text-center">
+												<a target="blank" href="{{repositorie.html_url}}">{{repositorie.name}}</a>
+											</div>
+											<div class="text-center">
+												<span><i class="fa fa-star" aria-hidden="true"></i> {{repositorie.stargazers_count}}</span>
+												<span><i class="fa fa-eye" aria-hidden="true"></i> {{repositorie.watchers}}</span>
+											</div>
+										</li>
+									</div>
 								</ul>
 								<div class="total-points">
 									<h5>TOTAL</h5>
@@ -54,7 +76,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="winner animated fadeInDown">
+			<div class="winner animated hidden">
 				<h3>VENCEDOR</h3>
 			</div>
 		</div>
@@ -70,13 +92,13 @@
 					<div class="form-fight">
 						<form>
 							<div class="input-group">
-								<input type="text" class="form-control fighter_name" name="" placeholder="Nome do usuário no github" data-ng-model="Arena.nome_fighter_2">
+								<input type="text" class="form-control fighter_name" name="" placeholder="Nome do usuário no github" data-ng-model="Arena.nome_fighter_2" data-ng-keyup="Arena.check2()">
 								<span class="input-group-btn">
 									<button class="btn btn-default" type="submit" data-ng-click="Arena.add2(Arena.nome_fighter_2)">Encontrar!</button>
 								</span>
 							</div>
 						</form>
-						<div class="second-fighter animated">
+						<div class="second-fighter animated hidden">
 							<div class="card-fighter">
 								<ul class="list-unstyled">
 									<li>
@@ -107,6 +129,28 @@
 										<p>Repositórios Públicos</p>
 										<p class="points">{{Arena.info2.public_repos}}</p>
 									</li>
+									<li>
+										<p>Seguidores</p>
+										<p class="points">{{Arena.info2.followers}}</p>
+									</li>
+									<li>
+										<p>Estrelas</p>
+										<p class="points">{{Arena.total_stars2}}</p>
+									</li>
+								</ul>
+								<ul class="list-group">
+									<h4>Lista de Repositórios</h4>
+									<div data-ng-repeat="repositorie2 in Arena.repositories2 track by $index">
+										<li class="list-group-item">
+											<div class="text-center">
+												<a target="blank" href="{{repositorie2.html_url}}">{{repositorie2.name}}</a>
+											</div>
+											<div class="text-center">
+												<span><i class="fa fa-star" aria-hidden="true"></i> {{repositorie2.stargazers_count}}</span>
+												<span><i class="fa fa-eye" aria-hidden="true"></i> {{repositorie2.watchers}}</span>
+											</div>
+										</li>
+									</div>
 								</ul>
 								<div class="total-points">
 									<h5>TOTAL</h5>
@@ -117,7 +161,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="winner animated fadeInDown">
+			<div class="winner2 animated hidden">
 				<h3>VENCEDOR</h3>
 			</div>
 		</div>

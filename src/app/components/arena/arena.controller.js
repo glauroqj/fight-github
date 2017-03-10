@@ -5,24 +5,30 @@
 	.module('find-github')
 	.controller('ArenaController', ArenaController);
 
-	function ArenaController($rootScope, $scope, $element, ngNotify, VerifyUserService) {
+	function ArenaController($rootScope, $scope, $element, $timeout, ngNotify, VerifyUserService, VerifyRepositoriesService) {
 		var vm = this;
 		var fighter1 = document.getElementsByClassName('first-fighter')[0];
 		var fighter2 = document.getElementsByClassName('second-fighter')[0];
 
-		$scope.nome_fighter = '';
-		$scope.$watch('nome_fighter', function(letter) {
-			if ( letter === '' ) {
-				fighter1.className = 'first-fighter animated fadeOutUp hidden';
+		vm.nome_fighter = '';
+		vm.check = function() {
+			if ( vm.nome_fighter == '' ) {
+				fighter1.className = 'first-fighter animated fadeOut';
+				$timeout( function() {
+					fighter1.className = 'first-fighter hidden'
+				}, 200);
 			}
-		});
+		}
 
-		// vm.nome_fighter_2 = '';
-		// $scope.$watch('nome_fighter_2', function(letter) {
-		// 	if ( letter === '' ) {
-		// 		fighter2.className = 'second-fighter animated fadeInUp';
-		// 	}
-		// });
+		vm.nome_fighter_2 = '';
+		vm.check2 = function() {
+			if ( vm.nome_fighter_2 == '' ) {
+				fighter2.className = 'second-fighter animated fadeOut';
+				$timeout( function() {
+					fighter2.className = 'second-fighter hidden'
+				}, 200);
+			}
+		}
 
 		vm.add = function(nome) {
 			if ( nome != '' && nome != undefined && nome != null ) {
@@ -31,10 +37,26 @@
 						vm.info = response;
 						var p_gist = vm.info.public_gists;
 						var p_repo = vm.info.public_repos;
-						vm.total = p_gist + p_repo;
+						var followers = vm.info.followers;
+						var count_stars = 0;
+						var total_stars = 0;
+						var total = 0;
+						/*call repositories*/
+						VerifyRepositoriesService.verify(nome).then(function(response) {
+							vm.repositories = response;
+							vm.repositories.forEach( function(element, index) {
+								var get_star = element.stargazers_count;
+								total_stars = total_stars + count_stars + get_star;
+								vm.total_stars = total_stars;
+							});/*each*/
+						});/*service*/
+						vm.total = p_gist + p_repo + followers + total_stars;
+						total = vm.total;
 						fighter1.className = 'first-fighter animated fadeIn visible';
-					}
-				})
+
+						calculateTotal(total);
+					}/*if*/
+				});/*service*/
 			}
 			else {
 				ngNotify.set('Campo 1º lutador vazio! Favor preencher :] ', 'error');
@@ -47,11 +69,29 @@
 				VerifyUserService.verify(nome).then(function(response) {
 					if ( response ) {
 						vm.info2 = response;
-						var p_gist = vm.info.public_gists;
-						var p_repo = vm.info.public_repos;
-						vm.total2 = p_gist + p_repo;
-					}
-				})
+						var p_gist = vm.info2.public_gists;
+						var p_repo = vm.info2.public_repos;
+						var followers = vm.info2.followers;
+						var count_stars = 0;
+						var total_stars2 = 0;
+						var total2 = 0
+						/*call repositories*/
+						VerifyRepositoriesService.verify(nome).then(function(response) {
+							vm.repositories2 = response;
+							vm.repositories2.forEach( function(element, index) {
+								console.log(index, element)
+								var get_star = element.stargazers_count;
+								total_stars2 = total_stars2 + count_stars + get_star;
+								vm.total_stars2 = total_stars2;
+							});/*each*/
+						});/*service*/
+						vm.total2 = p_gist + p_repo + followers + total_stars2;
+						total2 = vm.total2;
+						fighter2.className = 'second-fighter animated fadeIn visible';
+
+						calculateTotal(total2);
+					}/*if*/
+				})/*service*/
 			}
 			else {
 				ngNotify.set('Campo 2º lutador vazio! Favor preencher :] ', 'error');
@@ -59,6 +99,11 @@
 
 		}
 
+		function calculateTotal(total, total2) {
+			console.log(total, total2)
+		}
+
+		/* BELOW OLD CODE */
 
 		vm.delete = function(item) {
 			var index = vm.todos.indexOf(item);
