@@ -9,11 +9,20 @@
 		var vm = this;
 		var fighter1 = document.getElementsByClassName('first-fighter')[0];
 		var fighter2 = document.getElementsByClassName('second-fighter')[0];
+		var field1 = document.getElementsByClassName('fighter_name')[0];
+		var field2 = document.getElementsByClassName('fighter_name')[1];
+		var name1 = 0;
+		var name2 = 0;
+		var fight = document.getElementById('fightNow');
+		var btn1 = document.getElementById('btn1');
+		var btn2 = document.getElementById('btn2');
+
 
 		vm.nome_fighter = '';
 		vm.check = function() {
 			if ( vm.nome_fighter == '' ) {
 				fighter1.className = 'first-fighter animated fadeOut';
+				btn1.removeAttribute('disabled');
 				$timeout( function() {
 					fighter1.className = 'first-fighter hidden'
 				}, 200);
@@ -24,6 +33,7 @@
 		vm.check2 = function() {
 			if ( vm.nome_fighter_2 == '' ) {
 				fighter2.className = 'second-fighter animated fadeOut';
+				btn2.removeAttribute('disabled');
 				$timeout( function() {
 					fighter2.className = 'second-fighter hidden'
 				}, 200);
@@ -31,9 +41,12 @@
 		}
 
 		vm.add = function(nome) {
-			if ( nome != '' && nome != undefined && nome != null ) {
+			name1 = nome;
+			var nome = nome.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'');
+			if ( nome != '' && nome != undefined && nome != null && name1 != name2 ) {
 				VerifyUserService.verify(nome).then(function(response) {
 					if ( response ) {
+						btn1.setAttribute('disabled', '');
 						vm.info = response;
 						var p_gist = vm.info.public_gists;
 						var p_repo = vm.info.public_repos;
@@ -53,10 +66,12 @@
 						vm.total = p_gist + p_repo + followers + total_stars;
 						total = vm.total;
 						fighter1.className = 'first-fighter animated fadeIn visible';
-
-						calculateTotal(total);
 					}/*if*/
 				});/*service*/
+			}/*if*/
+			else if ( name1 === name2 && name1 != '' ) {
+				field1.value = '';
+				ngNotify.set('Lutador já selecionado, escolha outro! ', 'error');
 			}
 			else {
 				ngNotify.set('Campo 1º lutador vazio! Favor preencher :] ', 'error');
@@ -65,9 +80,12 @@
 		}
 
 		vm.add2 = function(nome) {
-			if ( nome != '' && nome != undefined && nome != null ) {
+			name2 = nome;
+			var nome = nome.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'');
+			if ( nome != '' && nome != undefined && nome != null && name2 != name1 ) {
 				VerifyUserService.verify(nome).then(function(response) {
 					if ( response ) {
+						btn2.setAttribute('disabled', '');
 						vm.info2 = response;
 						var p_gist = vm.info2.public_gists;
 						var p_repo = vm.info2.public_repos;
@@ -88,10 +106,12 @@
 						vm.total2 = p_gist + p_repo + followers + total_stars2;
 						total2 = vm.total2;
 						fighter2.className = 'second-fighter animated fadeIn visible';
-
-						calculateTotal(total2);
 					}/*if*/
 				})/*service*/
+			}
+			else if ( name2 === name1 && name2 != '' ) {
+				field2.value = '';
+				ngNotify.set('Lutador já selecionado, escolha outro! ', 'error');
 			}
 			else {
 				ngNotify.set('Campo 2º lutador vazio! Favor preencher :] ', 'error');
@@ -99,7 +119,7 @@
 
 		}
 
-		function calculateTotal(total, total2) {
+		vm.calculate = function(total, total2) {
 			console.log(total, total2)
 		}
 

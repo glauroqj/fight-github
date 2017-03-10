@@ -22,17 +22,13 @@ angular.module('find-github')
 							ngNotify.set('Lutador do 1º campo não existe ou inválido! ', 'error');
 							field1.value = '';
 							fighter1.className = 'first-fighter animated fadeOut';
-							$timeout( function() {
-								fighter1.className = 'first-fighter animated hidden'
-							}, 200);
+							fighter1.className = 'first-fighter animated hidden'
 						}
 						else {
 							ngNotify.set('Lutador do 2º campo não existe ou inválido! ', 'error');
 							field2.value = '';
 							fighter2.className = 'second-fighter animated fadeOut';
-							$timeout( function() {
-								fighter2.className = 'second-fighter animated hidden'
-							}, 200);
+							fighter2.className = 'second-fighter animated hidden'
 						}
 					}
 					else {
