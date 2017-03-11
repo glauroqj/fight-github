@@ -1,24 +1,31 @@
 <div data-ng-controller="ArenaController as Arena">
 	<div class="arena-list">
-		<div class="col-md-5">
+		<div class="col-md-5 animated slideInLeft">
 			<div class="panel">
 				<div class="panel-body">
-					<h4>Informe o nome do usuário:</h4>
+					<h4>Informe o nome do lutador:</h4>
 					<div class="form-fight">
-						<form>
+						<form name="formOne">
 							<div class="input-group">
-								<input type="text" class="form-control fighter_name" placeholder="Nome do usuário no github" data-ng-model="Arena.nome_fighter" data-ng-keyup="Arena.check()">
+								<input type="text" class="form-control fighter_name" name="fieldOne" placeholder="Nome do usuário no github" data-ng-model="Arena.nome_fighter" data-ng-change="Arena.check()">
 								<span class="input-group-btn">
-									<button id="btn1" class="btn btn-default" type="submit" data-ng-click="Arena.add(Arena.nome_fighter)">Encontrar!</button>
+									<button id="btn1" class="btn btn-success" type="submit" data-ng-click="Arena.add(Arena.nome_fighter)">Encontrar!</button>
 								</span>
 							</div>
+							<div id="loading1" class="loading hidden">
+								<i class="fa fa-spinner fa-pulse fa-ng fa-fw"></i>
+								<span>loading...</span>
+							</div>
 						</form>
-						<div class="first-fighter ng-hide">
-							<div class="card-fighter">
+						<div id="first-fighter">
+							<div class="card-fighter animated hidden">
 								<ul class="list-unstyled">
-									<li>
+									<li class="animated fadeIn">
 										<img class="img-fighter img-responsive img-circle" data-ng-src="{{Arena.info.avatar_url}}" alt="imagem perfil">
 									</li>
+									<div class="winner animated hidden">
+										<h3><i class="fa fa-trophy fa-2x" aria-hidden="true"></i> VENCEDOR</h3>
+									</div>
 									<li><i class="fa fa-user" aria-hidden="true"></i> {{Arena.info.name}}</li>
 									<li>
 										<i class="fa fa-external-link" aria-hidden="true"></i> 
@@ -76,34 +83,38 @@
 					</div>
 				</div>
 			</div>
-			<div class="winner animated hidden">
-				<h3>VENCEDOR</h3>
-			</div>
 		</div>
 		<div class="col-md-2">
 			<div id="fightNow" class="divider animated hidden">
-				<div class="btn btn-lg btn-block btn-fight" data-ng-click="Arena.calculate(Arena.total, Arena.total2)">Lutar!</div>
+				<div class="btn btn-lg btn-block btn-fight" data-ng-click="Arena.calculate(Arena.total, Arena.info.name, Arena.total2, Arena.info2.name)">Lutar!</div>
 			</div>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-5 animated slideInRight">
 			<div class="panel">
 				<div class="panel-body">
-					<h4>Informe o nome do usuário:</h4>
+					<h4>Informe o nome do lutador:</h4>
 					<div class="form-fight">
-						<form>
+						<form name="formTwo">
 							<div class="input-group">
-								<input type="text" class="form-control fighter_name" name="" placeholder="Nome do usuário no github" data-ng-model="Arena.nome_fighter_2" data-ng-keyup="Arena.check2()">
+								<input type="text" class="form-control fighter_name" name="fieldTwo" placeholder="Nome do usuário no github" data-ng-model="Arena.nome_fighter_2" data-ng-change="Arena.check2()">
 								<span class="input-group-btn">
-									<button id="btn2" class="btn btn-default" type="submit" data-ng-click="Arena.add2(Arena.nome_fighter_2)">Encontrar!</button>
+									<button id="btn2" class="btn btn-success" type="submit" data-ng-click="Arena.add2(Arena.nome_fighter_2)">Encontrar!</button>
 								</span>
 							</div>
+							<div id="loading2" class="loading hidden">
+								<i class="fa fa-spinner fa-pulse fa-ng fa-fw"></i>
+								<span>loading...</span>
+							</div>
 						</form>
-						<div class="second-fighter animated hidden">
-							<div class="card-fighter">
+						<div id="second-fighter">
+							<div class="card-fighter animated hidden">
 								<ul class="list-unstyled">
-									<li>
+									<li class="animated fadeIn">
 										<img class="img-fighter img-responsive img-circle" data-ng-src="{{Arena.info2.avatar_url}}" alt="imagem perfil">
 									</li>
+									<div class="winner animated hidden">
+										<h3><i class="fa fa-trophy fa-2x" aria-hidden="true"></i> VENCEDOR</h3>
+									</div>
 									<li><i class="fa fa-user" aria-hidden="true"></i> {{Arena.info2.name}}</li>
 									<li>
 										<i class="fa fa-external-link" aria-hidden="true"></i> 
@@ -160,9 +171,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="winner2 animated hidden">
-				<h3>VENCEDOR</h3>
 			</div>
 		</div>
 	</div>

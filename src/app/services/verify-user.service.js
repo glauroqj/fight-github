@@ -13,27 +13,23 @@ angular.module('find-github')
 					if ( response.status === 404 ) {
 						var fighter1 = document.getElementsByClassName('first-fighter')[0];
 						var fighter2 = document.getElementsByClassName('second-fighter')[0];
+						var load1 = document.getElementById('loading1');
+						var load2 = document.getElementById('loading2');
 
 						var field1 = document.getElementsByClassName('fighter_name')[0];
-						var field_name1 = document.getElementsByClassName('fighter_name')[0].value;
 						var field2 = document.getElementsByClassName('fighter_name')[1];
-						var field_name2 = document.getElementsByClassName('fighter_name')[1].value;
-						if ( field_name1 === user ) {
+						if ( field1.value === user ) {
+							load1.className = 'loading hidden';
 							ngNotify.set('Lutador do 1º campo não existe ou inválido! ', 'error');
-							field1.value = '';
-							fighter1.className = 'first-fighter animated fadeOut';
-							fighter1.className = 'first-fighter animated hidden'
 						}
 						else {
+							load2.className = 'loading hidden';
 							ngNotify.set('Lutador do 2º campo não existe ou inválido! ', 'error');
-							field2.value = '';
-							fighter2.className = 'second-fighter animated fadeOut';
-							fighter2.className = 'second-fighter animated hidden'
 						}
 					}
-					else {
-						returnResponseData
-					}
+					// else {
+					// 	returnResponseData
+					// }
 				});
 		}
 	};
