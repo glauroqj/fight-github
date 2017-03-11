@@ -1,0 +1,48 @@
+/******************************************************************
+
+Buttons
+
+******************************************************************/
+
+.btn {
+	border-radius: 0px;
+	text-transform: uppercase;
+	@extend .transition;
+	i {
+	}
+	&:hover {
+		i {
+		}
+	}
+	&:focus, &:active  {
+		outline: none !important;
+		color: #ffffff;
+	}
+}
+
+button {
+	outline: none !important;
+	@extend .transition;
+	&:active  {
+		outline: none !important;
+		color: #ffffff;
+	}
+	&:focus {
+		outline: none !important;
+	}
+	&:hover {
+	}
+}
+
+.btn-fight {
+	background-color: $principal-color;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	color: #ffffff;
+	&:hover, &:active, &:focus {
+		color: #fff;
+		background-color: $principal-color-light;
+	}
+}

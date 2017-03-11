@@ -1,0 +1,104 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="pt-br" data-ng-app="boilerplate"> <!--<![endif]-->
+
+<head>
+
+	<base href="/">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Fight Github - Desafie seus amigos!</title>
+
+	<!-- mobile meta -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+		<!--[if IE]>
+			<link rel="shortcut icon" href="favicon.ico">
+			<![endif]-->
+			<!-- or, set /favicon.ico for IE10 win -->
+			<meta name="msapplication-TileColor" content="#f01d4f">
+
+			<!-- CSS -->
+			<!-- build:css css/style.min.css -->
+			<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+			<link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+			<link rel="stylesheet" href="bower_components/OwlCarousel/owl-carousel/owl.carousel.css" />
+			<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+			<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+			<link rel="stylesheet" type="text/css" href="styles/style.css" />
+			<!-- endbuild -->
+
+		</head>
+
+		<body>
+
+		<!--[if lt IE 8]>
+		    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		    <![endif]-->
+
+		    <!-- Navigation -->
+		    <main-nav></main-nav>
+
+		    <!-- Main view for templates -->
+		    <div data-ng-view=""></div>
+
+		</body>
+
+		<!-- Vendors -->
+		<!-- build:nonangularlibs js/nonangularlibs.js -->
+		<script type="text/javascript" src="js/nonangular/jquery-1.11.2.min.js"></script>
+		<!-- endbuild -->
+
+		<!-- Non-angular libraries -->
+		<!-- build:libs js/libs.js -->
+		<script type="text/javascript" src="js/nonangular/lodash.min.js"></script>
+		<script type="text/javascript" src="js/scripts.js"></script>
+		<!-- endbuild -->
+
+		<!-- Angular external libraries for application -->
+		<!-- build:angularlibs js/angularlibs.js -->
+		<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+		<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+		<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+		<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+		<script type="text/javascript" src="bower_components/ng-notify/src/scripts/ng-notify.js"></script>
+		<!-- endbuild -->
+
+		<!-- Angular components -->
+		<!-- build:appcomponents js/appcomponents.js -->
+		<script type="text/javascript" src="app/app.js"></script>
+		<script type="text/javascript" src="app/config.js"></script>
+		<script type="text/javascript" src="components/services/verify-user.service.js"></script>
+		<script type="text/javascript" src="components/services/verify-repositores.service.js"></script>
+		<script type="text/javascript" src="components/directives/main.nav.directive.js"></script>
+		<script type="text/javascript" src="components/directives/arena.directive.js"></script>
+		<!-- endbuild -->
+
+		<!-- Application sections -->
+		<!-- build:mainapp js/mainapp.js -->
+		<script type="text/javascript" src="app/factory.js"></script>
+		<script type="text/javascript" src="app/controller.js"></script>
+		<script type="text/javascript" src="components/directives/arena.controller.js"></script>
+		<!-- endbuild -->
+
+		<!-- templates from $templateCache -->
+		<!-- build:templates -->
+		<!-- endbuild -->
+
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+		<script>
+			(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+				function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+			e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+			e.src='https://www.google-analytics.com/analytics.js';
+			r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+			ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+		</script>
+
+		</html>
