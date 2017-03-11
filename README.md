@@ -13,4 +13,4 @@ Tecnologia Utilizada
 * Node.js
 * Angular.js
 * Gulp
- *Sass
+* Sass
