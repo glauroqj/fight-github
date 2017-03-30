@@ -36,30 +36,18 @@
    */
    function config($routeProvider, $locationProvider, $httpProvider, $compileProvider) {
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false);
 
     // routes
     $routeProvider
-    .when('/', {
+    .when('/fight-github', {
       templateUrl: 'views/home.html',
       controller: 'MainController',
       controllerAs: 'Main'
     })
     .otherwise({
-      redirectTo: '/'
+      redirectTo: '/fight-github'
     });
-
-  }
-
-  angular
-  .module('boilerplate')
-  .run(run);
-
-  run.$inject = ['$rootScope', '$location'];
-
-  function run($rootScope, $location) {
-
-    // put here everything that you need to run on page load
 
   }
 
