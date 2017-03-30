@@ -17,9 +17,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.6.3",
-    "angular-route": "^1.6.3",
-    "angular-sanitize": "^1.6.3",
+    "angular": "^1.6.1",
+    "angular-route": "^1.6.1",
+    "angular-sanitize": "^1.6.1",
     "ng-notify": "^0.8.0",
     "angular-bootstrap": "^2.5.0",
     "bootstrap": "^3.3.7"

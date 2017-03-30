@@ -61,11 +61,12 @@
               var field1 = document.getElementsByClassName('fighter_name')[0];
               var field2 = document.getElementsByClassName('fighter_name')[1];
               if ( field1.value === user ) {
-                load1.className = 'loading hidden';
+                //load1.className = 'loading hidden';
+                $('#loading1').slideUp(250).addClass('hidden');
                 ngNotify.set('Lutador do 1º campo não existe ou inválido! ', 'error');
               }
               else {
-                load2.className = 'loading hidden';
+                $('#loading2').slideUp(250).addClass('hidden');
                 ngNotify.set('Lutador do 2º campo não existe ou inválido! ', 'error');
               }
             }
