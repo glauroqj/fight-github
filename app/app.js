@@ -40,13 +40,13 @@
 
     // routes
     $routeProvider
-    .when('/fight-github', {
+    .when('/', {
       templateUrl: 'views/home.html',
       controller: 'MainController',
       controllerAs: 'Main'
     })
     .otherwise({
-      redirectTo: '/fight-github'
+      redirectTo: '/'
     });
 
   }
